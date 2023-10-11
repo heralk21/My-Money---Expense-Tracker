@@ -21,7 +21,7 @@ public class ExpenseList {
         return budget.getMonthlyBudget();
     }
 
-    private double getTotalSpent() {
+    public double getTotalSpent() {
         double spent = 0;
         for (int i = 0; i < allExpenses.size(); i++) {
             spent += allExpenses.get(i).getExpenseCost();

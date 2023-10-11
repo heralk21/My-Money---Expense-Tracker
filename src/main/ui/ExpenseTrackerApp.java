@@ -34,6 +34,7 @@ public class ExpenseTrackerApp {
                 showSavings();
                 System.out.println("Thank you for using MyMoney!!");
                 keepGoing = false;
+
             } else {
                 processCommand(command);
             }
