@@ -53,6 +53,8 @@ public class ExpenseList {
             if (allExpenses.get(i).getExpenseName().equals(name)) {
                 allExpenses.remove(allExpenses.get(i));
                 isExpenseInList = true;
+            } else {
+                isExpenseInList = false;
             }
         }
         return isExpenseInList;
