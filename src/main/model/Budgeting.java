@@ -1,7 +1,7 @@
 package model;
 
 public class Budgeting {
-    private double monthlyBudget = 0;
+    private double monthlyBudget;
 
     /*
      * REQUIRES: monthlyBudget > 0
