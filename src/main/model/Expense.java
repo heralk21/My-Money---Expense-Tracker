@@ -1,37 +1,44 @@
 package model;
 
-
+// Represents an expense having a name and cost (in $)
 public class Expense {
     private String expenseName;
     private double expenseCost;
 
-    /*
-     * REQUIRES: expenseName has a non-zero length, expenseCost > 0
-     * EFFECTS: expenseName of expense is set to name;
-     */
-
+    // REQUIRES: cost > 0 (in $)
+    // EFFECTS: constructs an expense having a name and cost (in $)
     public Expense(String name,double cost) {
         this.expenseName = name;
         this.expenseCost = cost;
 
     }
 
+    //getters//
+
+    // EFFECTS: returns name of the expense
     public String getExpenseName() {
         return expenseName;
     }
 
+    // EFFECTS: returns cost of the expense (in $)
     public double getExpenseCost() {
         return expenseCost;
     }
 
-    public void setExpenseCost(double expenseCost) {
-        this.expenseCost = expenseCost;
-    }
 
+    //setters//
+
+    //MODIFIES : this
+    // EFFECTS: sets name of the expense to expenseName
     public void setExpenseName(String expenseName) {
         this.expenseName = expenseName;
     }
 
-
+    //REQUIRES : expenseCost > 0
+    //MODIFIES : this
+    // EFFECTS: sets cost of the expense (in $) to expenseCost
+    public void setExpenseCost(double expenseCost) {
+        this.expenseCost = expenseCost;
+    }
 
 }

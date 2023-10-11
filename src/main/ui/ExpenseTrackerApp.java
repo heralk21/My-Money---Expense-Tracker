@@ -5,15 +5,19 @@ import java.util.Scanner;
 import model.ExpenseList;
 import model.Expense;
 
+//Expense Tracker Application
 public class ExpenseTrackerApp {
     private Scanner input;
     private ExpenseList expenseList;
     private Expense expense;
 
+    //runs the expense tracker application
     public ExpenseTrackerApp() {
         runExpenseTracker();
     }
 
+    //MODIFIES : this
+    //EFFECTS : processes the input
     private void runExpenseTracker() {
         boolean keepGoing = true;
         int command = 0;
@@ -41,6 +45,8 @@ public class ExpenseTrackerApp {
         }
     }
 
+    //MODIFIES : this
+    //EFFECTS : initializes the expense list
     private void init() {
         input = new Scanner(System.in);
         input.useDelimiter("\n");
@@ -48,8 +54,8 @@ public class ExpenseTrackerApp {
 
     }
 
+    //EFFECTS : displays the menu of options to the user
     private void displayMenu() {
-
         System.out.println("\nSelect from :");
         System.out.println("\t1 -> update existing monthly budget");
         System.out.println("\t2 -> add expense");
@@ -58,6 +64,8 @@ public class ExpenseTrackerApp {
         System.out.println("\t5 -> show savings and quit");
     }
 
+    //MODIFIES: this
+    //EFFECTS : processes user command
     private void processCommand(int command) {
         if (command == 1) {
             editBudget();
@@ -72,6 +80,8 @@ public class ExpenseTrackerApp {
         }
     }
 
+    //MODIFIES : this
+    //EFFECTS : updates the monthly budget
     private void editBudget() {
         System.out.println("Your current budget : " + expenseList.getMonthlyBudget());
         System.out.println("Enter your new budget : ");
@@ -86,6 +96,8 @@ public class ExpenseTrackerApp {
         System.out.println("Your current budget : " + expenseList.getMonthlyBudget());
     }
 
+    //MODIFIES : this
+    //EFFECTS : inputs an expense and adds it to expenseList
     private void addExpense() {
         System.out.println("Enter expense name : ");
 
@@ -101,9 +113,12 @@ public class ExpenseTrackerApp {
         } else {
             System.out.println("You are going over budget!!");
         }
-
     }
 
+    //MODIFIES : this
+    //EFFECTS : inputs a name of the expense the user wishes
+    //          to remove and removes the expense from expenseList
+    //          (if it exists in expenseList)
     private void removeExpense() {
         System.out.println("Enter expense name you wish to remove : ");
 
@@ -116,6 +131,8 @@ public class ExpenseTrackerApp {
         }
     }
 
+    //EFFECTS : displays all the expenses with their respective
+    //          names and cost (in $)
     private void showAllExpenses() {
         System.out.println("Your expenses: ");
         List<Expense> allExpenses = expenseList.getAllExpenses();
@@ -130,6 +147,8 @@ public class ExpenseTrackerApp {
         }
     }
 
+    //EFFECTS : displays the money saved (in $) from the monthly budget
+    //          and quits the application
     private void showSavings() {
         System.out.println("Your savings: " + expenseList.returnSavings());
         if (expenseList.returnSavings() > 0) {
