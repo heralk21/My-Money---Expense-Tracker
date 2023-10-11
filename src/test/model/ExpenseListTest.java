@@ -244,6 +244,45 @@ class ExpenseListTest {
         assertTrue(testexpenselist.updateBudget(1112.6));
     }
 
+    @Test
+    void testAddMultipleExpenseUpdateBudgetAgainFailRemoveUpdate() {
+        List<Expense> testList = testexpenselist.getAllExpenses();
+        assertTrue(testList.isEmpty());
+        assertEquals(testexpenselist.getMonthlyBudget(),0);
+        assertEquals(testexpenselist.getTotalSpent(),0);
+        assertEquals(testexpenselist.returnSavings(),0);
+
+        assertTrue(testexpenselist.updateBudget(1500.0));
+
+        assertTrue(testexpenselist.addExpense(expense1));
+        assertEquals(testexpenselist.getMonthlyBudget(),1500.0);
+        assertEquals(testexpenselist.getTotalSpent(),600.0);
+        assertEquals(testexpenselist.returnSavings(),900.0);
+
+        assertTrue(testexpenselist.addExpense(expense2));
+        assertEquals(testexpenselist.getMonthlyBudget(),1500.0);
+        assertEquals(testexpenselist.getTotalSpent(),1025.76);
+        assertEquals(testexpenselist.returnSavings(),474.24);
+
+        assertTrue(testexpenselist.addExpense(expense3));
+        assertEquals(testexpenselist.getMonthlyBudget(),1500.0);
+        assertEquals(testexpenselist.getTotalSpent(),1112.51);
+        assertEquals(testexpenselist.returnSavings(),387.49);
+
+        assertFalse(testexpenselist.updateBudget(1000.0));
+
+        assertFalse(testexpenselist.removeExpense("iPad"));
+        assertEquals(1500.0,testexpenselist.getMonthlyBudget());
+        assertEquals(512.51,testexpenselist.getTotalSpent());
+        assertEquals(987.49,testexpenselist.returnSavings());
+
+        assertTrue(testexpenselist.updateBudget(1000.0));
+        assertEquals(1000.0,testexpenselist.getMonthlyBudget());
+        assertEquals(512.51,testexpenselist.getTotalSpent());
+        assertEquals(487.49,testexpenselist.returnSavings());
+
+    }
+
 
 
 
