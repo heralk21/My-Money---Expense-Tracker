@@ -14,9 +14,10 @@ This project is of great interest to me as it addresses a crucial need to have a
 
 ### User stories
 As a user, I want to be able to: 
--  add my monthly budget into the tracker.
-- add my expenses into the tracker.
-- update my budget. 
+-  add / update my monthly budget in the tracker.
+- add my expenses into the tracker. 
 -  know if I go over my set budget.
 -  know how much I saved from my budget.
 -  see all of my expenses for that month. 
+- I want to be reminded to save my current month's expense breakdown to file and have the option to do so or not. 
+- I want to be given the option to load my saved month's expense breakdown from file, when I restart the application.
