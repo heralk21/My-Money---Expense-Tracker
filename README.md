@@ -16,7 +16,7 @@ This project is of great interest to me as it addresses a crucial need to have a
 As a user, I want to be able to: 
 -  add my monthly budget into the tracker.
 - add my expenses into the tracker.
--update my budget. 
+- update my budget. 
 -  know if I go over my set budget.
 -  know how much I saved from my budget.
 -  see all of my expenses for that month. 

@@ -24,7 +24,7 @@ public class ExpenseList {
 
     // EFFECTS: returns monthlyBudget (in $)
     public double getMonthlyBudget() {
-        return budget.getMonthlyBudget();
+        return  budget.getMonthlyBudget();
     }
 
     // EFFECTS: returns total amount spent (in $)
@@ -65,7 +65,7 @@ public class ExpenseList {
         }
     }
 
-    // REQUIRES : non-empty name
+    // REQUIRES : name is not already in expenses
     // MODIFIES : this
     // EFFECTS: remove it from the allExpenses if name matches with the expenseName
     //          of any expenses in the expense list and returns true
@@ -89,6 +89,8 @@ public class ExpenseList {
     public double returnSavings() {
         return (budget.getMonthlyBudget() - getTotalSpent());
     }
+
+    //push phase1
 }
 
 
