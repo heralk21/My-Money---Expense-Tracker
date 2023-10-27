@@ -113,8 +113,6 @@ public class ExpenseList implements Writable {
 
         return jsonArray;
     }
-
-    //push phase1
 }
 
 
