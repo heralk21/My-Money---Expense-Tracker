@@ -7,7 +7,6 @@ import persistence.Writable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
 
 // Represents a list of all expenses
 public class ExpenseList implements Writable {
@@ -99,13 +98,13 @@ public class ExpenseList implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("Budget", budget);
-        json.put("AllExpenses", thingiesToJson());
+        json.put("Budget", budget.toJson());
+        json.put("AllExpenses", allExpensesToJson());
         return json;
     }
 
-    // EFFECTS: returns things in this workroom as a JSON array
-    private JSONArray thingiesToJson() {
+    // EFFECTS: returns expense in this expense list as a JSON array
+    private JSONArray allExpensesToJson() {
         JSONArray jsonArray = new JSONArray();
 
         for (Expense t : allExpenses) {

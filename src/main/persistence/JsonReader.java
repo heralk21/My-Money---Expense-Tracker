@@ -42,6 +42,7 @@ public class JsonReader {
     // EFFECTS: parses workroom from JSON object and returns it
     private ExpenseList parseExpenseList(JSONObject jsonObject) {
         ExpenseList el = new ExpenseList();
+        addBudget(el, jsonObject);
         addAllExpenses(el, jsonObject);
         return el;
     }
@@ -49,7 +50,7 @@ public class JsonReader {
     // MODIFIES: wr
     // EFFECTS: parses thingies from JSON object and adds them to workroom
     private void addAllExpenses(ExpenseList el, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("All Expenses");
+        JSONArray jsonArray = jsonObject.getJSONArray("AllExpenses");
         for (Object json : jsonArray) {
             JSONObject nextExpense = (JSONObject) json;
             addExpense(el, nextExpense);
@@ -59,9 +60,20 @@ public class JsonReader {
     // MODIFIES: wr
     // EFFECTS: parses thingy from JSON object and adds it to workroom
     private void addExpense(ExpenseList el, JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Double cost = jsonObject.getDouble("cost");
+        String name = jsonObject.getString("expenseName");
+        Double cost = jsonObject.getDouble("expenseCost");
         Expense expense = new Expense(name, cost);
         el.addExpense(expense);
+        el.getAllExpenses().get(0).getExpenseName();
     }
+
+    // MODIFIES: wr
+    // EFFECTS: parses thingy from JSON object and adds it to workroom
+    private void addBudget(ExpenseList el, JSONObject jsonObject) {
+        JSONObject jsonObj = jsonObject.getJSONObject("Budget");
+        double budget = jsonObj.getDouble("monthlyBudget");
+        el.updateBudget(budget);
+    }
+
+
 }

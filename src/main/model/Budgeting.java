@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a monthly budget (in $)
-public class Budgeting {
+public class Budgeting implements Writable {
     private double monthlyBudget;
 
     // REQUIRES: budget > 0 (in $)
@@ -23,8 +26,12 @@ public class Budgeting {
         return monthlyBudget;
     }
 
-    //push phase1
-
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("monthlyBudget", monthlyBudget);
+        return json;
+    }
 
 
 }

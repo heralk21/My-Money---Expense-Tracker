@@ -1,4 +1,5 @@
 package persistence;
+
 import model.ExpenseList;
 import org.json.JSONObject;
 
@@ -20,7 +21,7 @@ public class JsonWriter {
     // EFFECTS: opens writer; throws FileNotFoundException if destination file cannot
     // be opened for writing
     public void open() throws FileNotFoundException {
-        writer = new PrintWriter(new File(destination));
+        writer = new PrintWriter(destination);
     }
 
     // MODIFIES: this
@@ -39,6 +40,6 @@ public class JsonWriter {
     // MODIFIES: this
     // EFFECTS: writes string to file
     private void saveToFile(String json) {
-        writer.print(json);
+        writer.append(json);
     }
 }

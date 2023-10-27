@@ -1,0 +1,15 @@
+{
+  "AllExpenses": [
+    {
+      "expenseCost": 1000,
+      "expenseName": "testExpense1"
+    },
+    {
+      "expenseCost": 2000,
+      "expenseName": "testExpense2"
+    }
+  ],
+  "Budget": {
+    "monthlyBudget": 10000
+  }
+}

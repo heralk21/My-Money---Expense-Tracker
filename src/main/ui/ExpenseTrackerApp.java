@@ -13,7 +13,6 @@ import persistence.JsonWriter;
 public class ExpenseTrackerApp {
     private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
-    private ExpenseList expenseListBig;
     private ExpenseList expenseList;
     private Expense expense;
     private JsonWriter jsonWriter;
@@ -22,7 +21,7 @@ public class ExpenseTrackerApp {
     //runs the expense tracker application
     public ExpenseTrackerApp() throws FileNotFoundException {
         input = new Scanner(System.in);
-        expenseListBig = new ExpenseList();
+        expenseList = new ExpenseList();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runExpenseTracker();
@@ -169,9 +168,9 @@ public class ExpenseTrackerApp {
     private void saveExpenseListBig() {
         try {
             jsonWriter.open();
-            jsonWriter.write(expenseListBig);
+            jsonWriter.write(expenseList);
             jsonWriter.close();
-            System.out.println("Saved " + expenseListBig.getAllExpenses() + " to " + JSON_STORE);
+            System.out.println("Saved " + expenseList.getAllExpenses() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
@@ -181,8 +180,8 @@ public class ExpenseTrackerApp {
     // EFFECTS: loads expense list from file
     private void loadExpenseListBig() {
         try {
-            expenseListBig = jsonReader.read();
-            System.out.println("Loaded " + expenseListBig.getAllExpenses() + " from " + JSON_STORE);
+            expenseList = jsonReader.read();
+            System.out.println("Loaded " + expenseList.getAllExpenses() + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
