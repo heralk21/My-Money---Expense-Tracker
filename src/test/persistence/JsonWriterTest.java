@@ -44,6 +44,7 @@ class JsonWriterTest extends JsonTest{
     void testWriterGeneralWorkroom() {
         try {
             ExpenseList expenseList = new ExpenseList();
+            expenseList.updateBudget(1000);
             expenseList.addExpense(new Expense ("testExpense1",200));
             expenseList.addExpense(new Expense ("testExpense2",150));
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralExpenseList.json");
@@ -54,9 +55,9 @@ class JsonWriterTest extends JsonTest{
             JsonReader reader = new JsonReader("./data/testWriterGeneralExpenseList.json");
             expenseList = reader.read();
             List<Expense> expenseList1 = expenseList.getAllExpenses();
-            assertEquals(0, expenseList1.size());
-//            checkExpense("testExpense1",200.0,expenseList1.get(0));
-//            checkExpense("testExpense2",150.0,expenseList1.get(1));
+            assertEquals(2, expenseList1.size());
+            checkExpense("testExpense1",200.0,expenseList1.get(0));
+            checkExpense("testExpense2",150.0,expenseList1.get(1));
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");
