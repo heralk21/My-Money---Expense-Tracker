@@ -1,18 +1,30 @@
 package ui;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 import model.ExpenseList;
 import model.Expense;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
 //Expense Tracker Application
 public class ExpenseTrackerApp {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Scanner input;
+    private ExpenseList expenseListBig;
     private ExpenseList expenseList;
     private Expense expense;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     //runs the expense tracker application
-    public ExpenseTrackerApp() {
+    public ExpenseTrackerApp() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        expenseListBig = new ExpenseList();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runExpenseTracker();
     }
 
@@ -34,7 +46,7 @@ public class ExpenseTrackerApp {
             displayMenu();
             command = input.nextInt();
 
-            if (command == 5) {
+            if (command == 7) {
                 showSavings();
                 System.out.println("Thank you for using MyMoney!!");
                 keepGoing = false;
@@ -61,7 +73,9 @@ public class ExpenseTrackerApp {
         System.out.println("\t2 -> add expense");
         System.out.println("\t3 -> remove expense");
         System.out.println("\t4 -> show all expenses");
-        System.out.println("\t5 -> show savings and quit");
+        System.out.println("\t5 -> save work room to file");
+        System.out.println("\t6 -> load work room from file");
+        System.out.println("\t7 -> show savings and quit");
     }
 
     //MODIFIES: this
@@ -75,6 +89,10 @@ public class ExpenseTrackerApp {
             removeExpense();
         } else if (command == 4) {
             showAllExpenses();
+        } else if (command == 5) {
+            saveExpenseListBig();
+        } else if (command == 6) {
+            loadExpenseListBig();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -144,6 +162,29 @@ public class ExpenseTrackerApp {
             }
         } else {
             System.out.println("No expenses right now!");
+        }
+    }
+
+    // EFFECTS: saves the expense list to file
+    private void saveExpenseListBig() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(expenseListBig);
+            jsonWriter.close();
+            System.out.println("Saved " + expenseListBig.getAllExpenses() + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads expense list from file
+    private void loadExpenseListBig() {
+        try {
+            expenseListBig = jsonReader.read();
+            System.out.println("Loaded " + expenseListBig.getAllExpenses() + " from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
         }
     }
 

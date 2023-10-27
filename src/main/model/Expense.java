@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents an expense having a name and cost (in $)
-public class Expense {
+public class Expense implements Writable {
     private String expenseName;
     private double expenseCost;
 
@@ -39,6 +42,14 @@ public class Expense {
     // EFFECTS: sets cost of the expense (in $) to expenseCost
     public void setExpenseCost(double expenseCost) {
         this.expenseCost = expenseCost;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Expense", expenseName);
+        json.put("Cost", expenseCost);
+        return json;
     }
 
     //push phase1

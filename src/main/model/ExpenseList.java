@@ -1,10 +1,16 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 
 // Represents a list of all expenses
-public class ExpenseList {
+public class ExpenseList implements Writable {
     private List<Expense> allExpenses;
     private Budgeting budget;
 
@@ -88,6 +94,25 @@ public class ExpenseList {
     //          money spent from the monthly budget
     public double returnSavings() {
         return (budget.getMonthlyBudget() - getTotalSpent());
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Budget", budget);
+        json.put("AllExpenses", thingiesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns things in this workroom as a JSON array
+    private JSONArray thingiesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Expense t : allExpenses) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
     }
 
     //push phase1
