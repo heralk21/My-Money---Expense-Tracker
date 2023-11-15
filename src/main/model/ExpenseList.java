@@ -1,10 +1,15 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a list of all expenses
-public class ExpenseList {
+public class ExpenseList implements Writable {
     private List<Expense> allExpenses;
     private Budgeting budget;
 
@@ -24,7 +29,7 @@ public class ExpenseList {
 
     // EFFECTS: returns monthlyBudget (in $)
     public double getMonthlyBudget() {
-        return budget.getMonthlyBudget();
+        return  budget.getMonthlyBudget();
     }
 
     // EFFECTS: returns total amount spent (in $)
@@ -65,7 +70,7 @@ public class ExpenseList {
         }
     }
 
-    // REQUIRES : non-empty name
+    // REQUIRES : name is not already in expenses
     // MODIFIES : this
     // EFFECTS: remove it from the allExpenses if name matches with the expenseName
     //          of any expenses in the expense list and returns true
@@ -89,6 +94,26 @@ public class ExpenseList {
     public double returnSavings() {
         return (budget.getMonthlyBudget() - getTotalSpent());
     }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("Budget", budget.toJson());
+        json.put("AllExpenses", allExpensesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns expense in this expense list as a JSON array
+    private JSONArray allExpensesToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Expense t : allExpenses) {
+            jsonArray.put(t.toJson());
+        }
+
+        return jsonArray;
+    }
+//push before phase3
 }
 
 
