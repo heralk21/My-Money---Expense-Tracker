@@ -1,0 +1,7 @@
+{
+    "AllExpenses": [{
+        "expenseCost": 1999,
+        "expenseName": "a"
+    }],
+    "Budget": {"monthlyBudget": 2000}
+}
