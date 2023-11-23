@@ -37,19 +37,13 @@ public class ExpenseTrackerApp {
 
         System.out.println("Welcome to MyMoney!");
 
-        System.out.println("Enter your monthly budget : ");
-        double inpBudget = input.nextDouble();
-        expenseList.updateBudget(inpBudget);
-
         while (keepGoing) {
             displayMenu();
             command = input.nextInt();
 
-            if (command == 7) {
-                showSavings();
+            if (command == 8) {
                 System.out.println("Thank you for using MyMoney!!");
                 keepGoing = false;
-
             } else {
                 processCommand(command);
             }
@@ -68,13 +62,14 @@ public class ExpenseTrackerApp {
     //EFFECTS : displays the menu of options to the user
     private void displayMenu() {
         System.out.println("\nSelect from :");
-        System.out.println("\t1 -> update existing monthly budget");
+        System.out.println("\t1 -> add/update existing monthly budget");
         System.out.println("\t2 -> add expense");
         System.out.println("\t3 -> remove expense");
         System.out.println("\t4 -> show all expenses");
         System.out.println("\t5 -> save work room to file");
         System.out.println("\t6 -> load work room from file");
         System.out.println("\t7 -> show savings and quit");
+        System.out.println("\t8 -> quit the application");
     }
 
     //MODIFIES: this
@@ -92,6 +87,8 @@ public class ExpenseTrackerApp {
             saveExpenseListBig();
         } else if (command == 6) {
             loadExpenseListBig();
+        } else if (command == 7) {
+            showSavings();
         } else {
             System.out.println("Selection not valid...");
         }
@@ -199,6 +196,7 @@ public class ExpenseTrackerApp {
             System.out.println("You have gone over your set budget!");
         }
     }
+
 
 //push before phase3//
 }

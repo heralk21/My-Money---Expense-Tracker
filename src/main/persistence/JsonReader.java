@@ -48,7 +48,7 @@ public class JsonReader {
     }
 
     // MODIFIES: el
-    // EFFECTS: parses allexpenses from JSON object and adds them to expense list
+    // EFFECTS: parses all expenses from JSON object and adds them to expense list
     private void addAllExpenses(ExpenseList el, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("AllExpenses");
         for (Object json : jsonArray) {
