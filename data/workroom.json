@@ -1,7 +1,7 @@
 {
     "AllExpenses": [{
-        "expenseCost": 1000,
-        "expenseName": "iphone 15 pro"
+        "expenseCost": 1,
+        "expenseName": "yoo"
     }],
-    "Budget": {"monthlyBudget": 10000}
+    "Budget": {"monthlyBudget": 10}
 }

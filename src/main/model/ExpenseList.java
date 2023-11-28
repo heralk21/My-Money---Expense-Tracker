@@ -49,6 +49,8 @@ public class ExpenseList implements Writable {
     public boolean updateBudget(double budget) {
         if ((budget - getTotalSpent()) >= 0) {
             this.budget.setMonthlyBudget(budget);
+            EventLog.getInstance().logEvent(new Event(String.format("Monthly Budget Updated to : %s ",
+                    budget)));
             return true;
         } else {
             return false;
@@ -64,6 +66,8 @@ public class ExpenseList implements Writable {
     public boolean addExpense(Expense expense) {
         if ((budget.getMonthlyBudget() - getTotalSpent() - expense.getExpenseCost()) >= 0) {
             allExpenses.add(expense);
+            EventLog.getInstance().logEvent(new Event(String.format("Expense: %s added to expense list",
+                    expense.getExpenseName())));
             return true;
         } else {
             return false;
@@ -80,6 +84,8 @@ public class ExpenseList implements Writable {
         for (int i = 0; i < allExpenses.size(); i++) {
             if (allExpenses.get(i).getExpenseName().equals(name)) {
                 allExpenses.remove(allExpenses.get(i));
+                EventLog.getInstance().logEvent(new Event(String.format("Expense: %s removed from expense list",
+                        name)));
                 isExpenseInList = true;
             } else {
                 isExpenseInList = false;

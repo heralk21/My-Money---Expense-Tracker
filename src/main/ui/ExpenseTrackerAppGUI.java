@@ -1,5 +1,7 @@
 package ui;
 
+import model.Event;
+import model.EventLog;
 import model.Expense;
 import model.ExpenseList;
 import persistence.JsonReader;
@@ -375,6 +377,12 @@ public class ExpenseTrackerAppGUI extends JFrame implements ActionListener {
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
+    //EFFECTS: prints the logs
+    private void printLogs(EventLog events) {
+        for (Event event : events) {
+            System.out.println(event.toString());
+        }
+    }
 
     // MODIFIES: this
     // EFFECTS: ends the application
@@ -382,6 +390,7 @@ public class ExpenseTrackerAppGUI extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(null,
                 "Thank you for using MyMoney!!", "Quitting",
                 JOptionPane.INFORMATION_MESSAGE);
+        printLogs(EventLog.getInstance());
         System.exit(0);
         frame.dispose();
         frame.setVisible(false);
