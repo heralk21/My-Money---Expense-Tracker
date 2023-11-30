@@ -49,7 +49,7 @@ Tue Nov 28 23:09:12 PST 2023
 Expense: Groceries removed from expense list
 ````
 ### Phase 4: Task 3
-- #### Creating a new class with the "Singleton method" for managing the expense list would be advantageous. This approach ensures consistency and prevents the occurrence of mismatched or duplicated expense lists throughout the application. Adopting the Singleton method in the expense list class will provide a foundation for future development, allowing seamless integration of features like an expense summary class. This way, the Singleton method ensures the accurate and singular use of the expense list, eliminating concerns about inconsistencies or duplicates.
+Creating a new class with the "Singleton method" for managing the expense list would be advantageous. This approach ensures consistency and prevents the occurrence of mismatched or duplicated expense lists throughout the application. Adopting the Singleton method in the expense list class will provide a foundation for future development, allowing seamless integration of features like an expense summary class. This way, the Singleton method ensures the accurate and singular use of the expense list, eliminating concerns about inconsistencies or duplicates.
 
 
 <img height="350" src="UML Diagram.png" width="800"/>
